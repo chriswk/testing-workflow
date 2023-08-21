@@ -9,6 +9,10 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+      - name: Configure git
+        run: |
+          git config --global user.email '<>'
+          git config --global user.name "Github Editor"
       - name: Add some code
         run: echo $FOO >> file
         env:
