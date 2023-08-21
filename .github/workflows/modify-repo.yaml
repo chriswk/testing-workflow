@@ -1,0 +1,21 @@
+name: Modify repo
+
+on:
+  workflow_dispatch:
+
+jobs:
+  edit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Add some code
+        run: echo $FOO >> file
+        env:
+          FOO: foobar-${{ github.run_id }}-${{ github.run_attempt }}
+      - name: Add to git
+        run: git add file
+      - name: Commit to git
+        run: git commit -m"Added foo"
+      - name: Push
+        run: git push
